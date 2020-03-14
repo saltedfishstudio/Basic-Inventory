@@ -62,6 +62,10 @@ public class ItemFactory : MonoBehaviour
 		{
 			TryPickUpItem(inventory, amount);
 		}
+		else
+		{
+			EventDispatcher.Execute<string>("OnItemFactoryTriggerEnter", $"Press F to pick up {itemDefinition.itemName}.");
+		}
 	}
 
 	protected void OnTriggerExit(Collider other)
@@ -71,6 +75,7 @@ public class ItemFactory : MonoBehaviour
 		if (inventory == null) return;
 
 		currentInventory = null;
+		EventDispatcher.Execute("OnItemFactoryTriggerExit");
 	}
 
 	public void TryPickUpItem(Inventory inventory, int itemAmount)
