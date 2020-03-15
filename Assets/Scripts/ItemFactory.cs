@@ -15,6 +15,7 @@ public class ItemFactory : MonoBehaviour
 	public EActivateTime activateTime = EActivateTime.Awake;
 
 	Inventory currentInventory = default;
+	Item itemInstance = default;
 	bool isDeprecated = false;
 	
 	void Awake()
@@ -44,7 +45,7 @@ public class ItemFactory : MonoBehaviour
 
 		// Create Item Mesh
 		var itemPrefab = itemDefinition.prefab;
-		Item itemInstance = Instantiate(itemPrefab, transform, false);
+		itemInstance = Instantiate(itemPrefab, transform, false);
 
 		itemInstance.transform.localPosition = Vector3.zero;
 		itemInstance.transform.localRotation = Quaternion.identity;
@@ -102,7 +103,7 @@ public class ItemFactory : MonoBehaviour
 
 	protected void DoPickUp(Inventory inventory, int itemAmount)
 	{
-		inventory.PickUpItem(this.itemDefinition, itemAmount);
+		inventory.PickUpItem(this.itemInstance, itemAmount);
 	}
 
 	protected int GetPickableItemCount(Inventory inventory, ItemDefinition itemDef)
@@ -134,6 +135,7 @@ public class ItemFactory : MonoBehaviour
 		isDeprecated = true;
 		itemDefinition = null;
 		currentInventory = null;
+		itemInstance = null;
 
 		Destroy(gameObject);
 	}

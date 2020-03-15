@@ -38,5 +38,6 @@ public class InventoryMessageDisplay : MonoBehaviour
 	void Initialize()
 	{
 		messageBox.enabled = false;
+		messageBox.text = string.Empty;
 	}
 }
