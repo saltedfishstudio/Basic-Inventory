@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Apple
   prefab: {fileID: -4569450929380568668, guid: bfec01bc3e4d0444dbe595b4f55c6730, type: 3}
-  maxStack: 1
+  maxStack: 255
   thumbnail: {fileID: 21300000, guid: 56b21598642d2a546ae1e3b0d9f8e833, type: 3}
+  weight: 1
   healAmount: 10
   cooldown: 3
   channeling: 0

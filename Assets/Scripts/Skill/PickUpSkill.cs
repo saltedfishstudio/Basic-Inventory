@@ -7,7 +7,8 @@ namespace SFStudio.OpenWorld.Skill
 	{
 		ItemFactory targetFactory = default;
 		Inventory inventory = default;
-		int amount = 1;
+		
+		const int amount = -1;
 
 		protected override bool CanExecute()
 		{

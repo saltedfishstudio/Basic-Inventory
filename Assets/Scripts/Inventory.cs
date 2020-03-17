@@ -40,7 +40,16 @@ public class Inventory : MonoBehaviour
 
     void AddItem(Item item, int itemAmount)
     {
-        item.amount += itemAmount;
+        while (itemAmount > byte.MaxValue)
+        {
+            var fullItem = Instantiate(item);
+            fullItem.amount = byte.MaxValue;
+            AddItem(fullItem, byte.MaxValue);
+
+            itemAmount -= byte.MaxValue;
+        }
+
+        item.amount = (byte) itemAmount;
         items.Add(item);
     }
 

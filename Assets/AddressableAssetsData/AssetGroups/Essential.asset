@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Essential
+  m_EditorClassIdentifier: 
+  m_GroupName: Essential
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 7f0db77f678f05249b421d8a38948470
+  m_SerializeEntries:
+  - m_GUID: 41aebf90a520b1543bebd76863b091c4
+    m_Address: Assets/Bundle/Prefabs/ItemFactory.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    m_mainAssetType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3fef23618f9ccb246a4d04338bdd9e6b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: db9c83839816b4647aaa591586dcdb9a, type: 2}
+    - {fileID: 11400000, guid: dd0fefcb512ead049857bb238970dbc1, type: 2}

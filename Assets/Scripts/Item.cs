@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
+using SFStudio.OpenWorld;
 using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
     public ItemDefinition itemDefinition = default;
-    public int amount = 0;
+    public byte amount = 0;
 
     [NonSerialized] 
     public Inventory owner = default;
@@ -23,15 +25,45 @@ public abstract class Item : MonoBehaviour
 
     public virtual void Drop()
     {
-        // Drop Mesh
-        this.transform.SetParent(null);
-        this.transform.position = this.owner.GetDropPosition();
-        this.transform.localRotation = Quaternion.identity;
+        if (AssetLoader.initialized)
+        {
+            DoDrop();
+        }
+        else
+        {
+            StartCoroutine(AsyncDrop());
+        }
+    }
+
+    void DoDrop()
+    {
+        // Generate Factory
+        
+        var factory = Instantiate(AssetLoader.itemFactory);
+        factory.transform.position = this.owner.GetDropPosition();
+        factory.transform.localRotation = Quaternion.identity;
+        
+        this.transform.SetParent(factory.transform);
+        this.transform.localPosition = Vector3.zero;
+
+        var itemFactory = factory.GetComponent<ItemFactory>();
+        itemFactory.Activate(this);
+        
+        // this.transform.SetParent(null);
+        // this.transform.position = this.owner.GetDropPosition();
+        // this.transform.localRotation = Quaternion.identity;
         
         // enable gameobject
         this.gameObject.SetActive(true);
         
         // Release owner
         this.owner = null;
+    }
+
+    IEnumerator AsyncDrop()
+    {
+        while (!AssetLoader.initialized) yield return null;
+        
+        DoDrop();
     }
 }

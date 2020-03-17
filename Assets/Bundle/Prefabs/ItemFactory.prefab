@@ -46,8 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemDefinition: {fileID: 0}
   amount: 1
-  autoPickup: 1
-  autoActivate: 1
+  triggerRadius: 2
+  autoPickup: 0
+  autoActivate: 0
   activateTime: 0
 --- !u!135 &3663703559806280143
 SphereCollider:
