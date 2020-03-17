@@ -8,6 +8,7 @@
 /[Bb]uild/
 /[Bb]uilds/
 /[Ll]ogs/
+/*.bak/
 /[Mm]emoryCaptures/
 /.idea/
 

@@ -1,34 +1,33 @@
 ﻿using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+namespace SFStudio.OpenWorld
 {
-    const string interactionKey = "Interaction";
-    
-    void Update()
-    {
+	using Skill;
 
-	    if (Input.GetButtonDown(interactionKey))
-	    {
-		    InterAct();
-	    }
+	public class Player : MonoBehaviour
+	{
+		[Header("Skill")] [SerializeField] ActiveSkill[] ActiveSkills = new ActiveSkill[0];
 
-	    if (Input.GetButtonUp(interactionKey))
-	    {
-		    
-	    }
-	    
-	    
-    }
+		void Update()
+		{
+			foreach (ActiveSkill skill in ActiveSkills)
+			{
+				if (skill == null) continue;
 
-    void InterAct()
-    {
-	    
-    }
-}
-
-[Serializable]
-public class BehaviourBase
-{
-	
+				foreach (string binding in skill.bindings)
+				{
+					if (Input.GetButtonDown(binding))
+					{
+						skill.OnButtonDown();
+					}
+					
+					if (Input.GetButtonUp(binding))
+					{
+						skill.OnButtonUp();
+					}
+				}
+			}
+		}
+	}
 }
