@@ -65,7 +65,8 @@ public class ItemFactory : MonoBehaviour
 		}
 		else
 		{
-			EventDispatcher.Execute<string>("OnItemFactoryTriggerEnter", $"Press F to pick up {itemDefinition.itemName}.");
+			EventDispatcher.SendMessage<string>("OnItemFactoryTriggerEnter", $"Press F to pick up {itemDefinition.itemName}.");
+			EventDispatcher.SendMessage<ItemFactory>("OnPickUpReady", this);
 		}
 	}
 
@@ -76,7 +77,8 @@ public class ItemFactory : MonoBehaviour
 		if (inventory == null) return;
 
 		currentInventory = null;
-		EventDispatcher.Execute("OnItemFactoryTriggerExit");
+		EventDispatcher.SendMessage("OnItemFactoryTriggerExit");
+		EventDispatcher.SendMessage("OnPickUpDeprecated");
 	}
 
 	public void TryPickUpItem(Inventory inventory, int itemAmount)
@@ -136,6 +138,9 @@ public class ItemFactory : MonoBehaviour
 		itemDefinition = null;
 		currentInventory = null;
 		itemInstance = null;
+		
+		EventDispatcher.SendMessage("OnItemFactoryTriggerExit");
+		EventDispatcher.SendMessage("OnPickUpDeprecated");
 
 		Destroy(gameObject);
 	}

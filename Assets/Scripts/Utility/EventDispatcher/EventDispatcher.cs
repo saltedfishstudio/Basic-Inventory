@@ -43,7 +43,7 @@ public class EventDispatcher
 		actionList[id] = actions;
 	}
 
-	public static void Execute(string id)
+	public static void SendMessage(string id)
 	{
 		if (!actionList.TryGetValue(id, out var actions))
 		{
@@ -91,7 +91,7 @@ public class EventDispatcher
 		actionList[id] = actions;
 	}
 
-	public static void Execute<T1>(string id, T1 arg)
+	public static void SendMessage<T1>(string id, T1 arg)
 	{
 		if (!actionList.TryGetValue(id, out var actions))
 		{

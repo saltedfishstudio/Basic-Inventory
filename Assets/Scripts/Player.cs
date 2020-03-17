@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SFStudio.OpenWorld
 {
@@ -7,7 +6,20 @@ namespace SFStudio.OpenWorld
 
 	public class Player : MonoBehaviour
 	{
-		[Header("Skill")] [SerializeField] ActiveSkill[] ActiveSkills = new ActiveSkill[0];
+		[Header("Skill")] [SerializeField] 
+		ActiveSkill[] ActiveSkills = new ActiveSkill[0];
+
+		public Inventory inventory;
+
+		void OnEnable()
+		{
+			LoadSkills();
+		}
+
+		void OnDisable()
+		{
+			UnloadSkills();
+		}
 
 		void Update()
 		{
@@ -27,6 +39,23 @@ namespace SFStudio.OpenWorld
 						skill.OnButtonUp();
 					}
 				}
+			}
+		}
+		
+
+		void LoadSkills()
+		{
+			foreach (ActiveSkill skill in ActiveSkills)
+			{
+				skill.Load(this);
+			}
+		}
+
+		void UnloadSkills()
+		{
+			foreach (ActiveSkill skill in ActiveSkills)
+			{
+				skill.Unload();
 			}
 		}
 	}

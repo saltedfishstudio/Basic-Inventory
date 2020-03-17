@@ -1,42 +1,45 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class InventoryMessageDisplay : MonoBehaviour
+namespace SFStudio.OpenWorld.UI
 {
-	public TextMeshProUGUI messageBox;
-
-	void Awake()
+	public class InventoryMessageDisplay : MonoBehaviour
 	{
-		Initialize();
-	}
+		public TextMeshProUGUI messageBox;
 
-	void OnEnable()
-	{
-		EventDispatcher.Register<string>("OnItemFactoryTriggerEnter", OnItemFactoryTriggerEnter);
-		EventDispatcher.Register("OnItemFactoryTriggerExit", OnItemFactoryTriggerExit);
-	}
+		void Awake()
+		{
+			Initialize();
+		}
 
-	void OnDisable()
-	{
-		EventDispatcher.Unregister<string>("OnItemFactoryTriggerEnter", OnItemFactoryTriggerEnter);
-		EventDispatcher.Unregister("OnItemFactoryTriggerExit", OnItemFactoryTriggerExit);
-	}
+		void OnEnable()
+		{
+			EventDispatcher.Register<string>("OnItemFactoryTriggerEnter", OnItemFactoryTriggerEnter);
+			EventDispatcher.Register("OnItemFactoryTriggerExit", OnItemFactoryTriggerExit);
+		}
 
-	void OnItemFactoryTriggerEnter(string str)
-	{
-		messageBox.text = str;
-		messageBox.enabled = true;
-	}
+		void OnDisable()
+		{
+			EventDispatcher.Unregister<string>("OnItemFactoryTriggerEnter", OnItemFactoryTriggerEnter);
+			EventDispatcher.Unregister("OnItemFactoryTriggerExit", OnItemFactoryTriggerExit);
+		}
 
-	void OnItemFactoryTriggerExit()
-	{
-		messageBox.enabled = false;
-		messageBox.text = string.Empty;
-	}
+		void OnItemFactoryTriggerEnter(string str)
+		{
+			messageBox.text = str;
+			messageBox.enabled = true;
+		}
 
-	void Initialize()
-	{
-		messageBox.enabled = false;
-		messageBox.text = string.Empty;
+		void OnItemFactoryTriggerExit()
+		{
+			messageBox.enabled = false;
+			messageBox.text = string.Empty;
+		}
+
+		void Initialize()
+		{
+			messageBox.enabled = false;
+			messageBox.text = string.Empty;
+		}
 	}
 }

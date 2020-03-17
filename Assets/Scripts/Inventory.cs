@@ -3,14 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Inventory : MonoBehaviour
 {
     [SerializeField] float maxCapacity = 200;
+    public Vector3 dropOffset = Vector3.zero;
     
     List<Item> items = new List<Item>();
     Transform inventoryRoot;
 
+    public UnityEvent onCollectionDirty = new UnityEvent();
+    
     void Awake()
     {
         Initialize();
@@ -36,7 +40,14 @@ public class Inventory : MonoBehaviour
 
     void AddItem(Item item, int itemAmount)
     {
+        item.amount += itemAmount;
         items.Add(item);
+    }
+
+    void RemoveItem(Item item, int itemAmount)
+    {
+
+        items.Remove(item);
     }
 
     float GetSumWeight()
@@ -54,5 +65,41 @@ public class Inventory : MonoBehaviour
         AddItem(item, itemAmount);
         
         item.PickUp(this);
+        onCollectionDirty.Invoke();
+    }
+
+    public void DropItem(Item item, int itemAmount)
+    {
+        RemoveItem(item, itemAmount);
+        
+        item.Drop();
+        onCollectionDirty.Invoke();
+    }
+    
+    public Transform InventoryRoot
+    {
+        get { return inventoryRoot; }
+    }
+
+    public Vector3 GetDropPosition()
+    {
+        return transform.position + dropOffset;
+    }
+
+    public void GrabItem(Item item)
+    {
+        item.transform.SetParent(inventoryRoot);
+        item.transform.localPosition = Vector3.zero;
+        item.transform.localRotation = Quaternion.identity;
+    }
+
+    public void ReleaseItem(Item item)
+    {
+        
+    }
+
+    public List<Item> GetItemList()
+    {
+        return items;
     }
 }

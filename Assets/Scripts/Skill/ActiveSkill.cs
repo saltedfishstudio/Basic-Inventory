@@ -16,5 +16,6 @@ namespace SFStudio.OpenWorld.Skill
 		{
 			
 		}
+
 	}
 }

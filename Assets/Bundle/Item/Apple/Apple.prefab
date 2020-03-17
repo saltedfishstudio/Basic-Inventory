@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23964813619247538}
   - component: {fileID: 7811320038123276467}
   - component: {fileID: -4569450929380568668}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Apple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,3 +106,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f5c6eedc7dab44469ed8b13ae6259b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemDefinition: {fileID: 11400000, guid: 6ddae79d99b85c7498e83598d0f05d64, type: 2}
+  amount: 0
