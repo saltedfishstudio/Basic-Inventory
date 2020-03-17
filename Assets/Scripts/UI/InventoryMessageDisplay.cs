@@ -1,10 +1,9 @@
-﻿using System;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InventoryMessageDisplay : MonoBehaviour
 {
-	public Text messageBox;
+	public TextMeshProUGUI messageBox;
 
 	void Awake()
 	{
