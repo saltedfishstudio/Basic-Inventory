@@ -38,6 +38,11 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// BUG
+    /// </summary>
+    /// <param name="item"></param>
+    /// <param name="itemAmount"></param>
     void AddItem(Item item, int itemAmount)
     {
         while (itemAmount > byte.MaxValue)
