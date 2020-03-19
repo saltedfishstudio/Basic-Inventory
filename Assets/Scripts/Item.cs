@@ -3,7 +3,7 @@ using System.Collections;
 using SFStudio.OpenWorld;
 using UnityEngine;
 
-public abstract class Item : MonoBehaviour
+public abstract class Item : MonoBehaviour, IEquatable<Item>, IEquatable<ItemDefinition>
 {
     public ItemDefinition itemDefinition = default;
     public byte amount = 0;
@@ -65,5 +65,20 @@ public abstract class Item : MonoBehaviour
         while (!AssetLoader.initialized) yield return null;
         
         DoDrop();
+    }
+
+    public bool Equals(Item other)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool Equals(ItemDefinition other)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override string ToString()
+    {
+        return $"{itemDefinition.itemName}";
     }
 }

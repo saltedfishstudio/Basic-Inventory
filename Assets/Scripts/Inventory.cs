@@ -11,7 +11,7 @@ namespace SFStudio.OpenWorld
         [SerializeField] float maxCapacity = 200;
         public Vector3 dropOffset = Vector3.zero;
 
-        Collection<Item> backpack;
+        Collection<ItemSlot<Item>, Item> backpack;
 
         List<Item> items = new List<Item>();
         Transform inventoryRoot;
@@ -44,7 +44,7 @@ namespace SFStudio.OpenWorld
 
         void CreateInventoryCollection()
         {
-            backpack = new Collection<Item>.Builder()
+            backpack = new Collection<ItemSlot<Item>, Item>.Builder()
                 .SetName("Inventory Collection")
                 .SetSize(12)
                 .Build();
