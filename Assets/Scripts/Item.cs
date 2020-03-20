@@ -5,6 +5,8 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour, IEquatable<Item>, IEquatable<ItemDefinition>
 {
+    public ItemSlot<Item> ownerSlot;
+    
     public ItemDefinition itemDefinition = default;
     public byte amount = 0;
 

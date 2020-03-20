@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Boo.Lang;
 
 namespace SFStudio.OpenWorld
 {
@@ -34,12 +36,39 @@ namespace SFStudio.OpenWorld
 
 		public void RegisterSilent(T t, int insertAmount = 1)
 		{
+			if (!EqualityComparer<T>.Default.Equals(item, t))
+			{
+				ItemSlot<T> ownerSlot = item.ownerSlot as ItemSlot<T>;
+				if (ownerSlot != null && ownerSlot == this)
+				{
+					t.ownerSlot = null;
+				}
+			}
+
+			item = t;
+			amount = insertAmount;
+			if (Vacant)
+			{
+				amount = 0;
+			}
 			
+			ItemSlot<T> ownerSlot2 = item.ownerSlot as ItemSlot<T>;
+			if (ownerSlot2 != null && ownerSlot2 == this)
+			{
+				t.ownerSlot = this as ItemSlot<Item>;
+			}
 		}
 
 		public void Clear()
 		{
-			throw new NotImplementedException();
+			var entry = item as ItemSlot<T>;
+			if (entry != null && entry == this)
+			{
+				item.ownerSlot = null;
+			}
+
+			item = default(T);
+			amount = 0;
 		}
 
 		public object Clone()
